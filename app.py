@@ -24,12 +24,17 @@ with open("tfidf_vectorizer.joblib","rb") as f:
 # pred_sentiment=[]
 # user_sentiment=[]
 
-connection_string="postgresql://postgres:@db.yhpldmpaxasraaubhuds.supabase.co:5432/postgres"
+# DB_USER, DB_PASSWORD DB_HOST DB_PORT DB_DATABASE  
+
+conn_host=os.environ["DB_HOST"]
+conn_db=os.environ["DB_DATABASE"]
+conn_pass=os.environ["DB_PASS"]
+conn_user=os.environ["DB_USER"]
+conn_port=os.environ["DB_PORT"]
 
 while True:
     try:
-        # conn=psycopg2.connect(host="localhost",database="Sentiment_Analysis",user="postgres",password="kartik05",cursor_factory=RealDictCursor)
-        conn=psycopg2.connect(user="postgres", password="foREVer@6660578",host="db.yhpldmpaxasraaubhuds.supabase.co",port="5432",database="postgres",cursor_factory=RealDictCursor)
+        conn=psycopg2.connect(user=conn_user, password=conn_pass,host=conn_host,port=conn_port,database=conn_db,cursor_factory=RealDictCursor)
         cursor=conn.cursor()
         print("Database connection successful")
         break
